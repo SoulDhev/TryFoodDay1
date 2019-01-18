@@ -1,0 +1,102 @@
+<div class="row">
+  <button id="fill-form" class="btn btn-default">Fill In Sample Info</button>
+</div>
+
+<div class="row">
+  <div class="col-md-8 submit-form">
+    <form class="form-horizontal" role="form">
+      
+      <div class="form-group" id="photo-group">
+        <label for="photo"
+               class="col-sm-2 control-label form-label">Photo</label>
+        <div class="col-sm-10 upload">
+          <input type="file" id="photo" class="input-box-form">
+        </div>
+      </div>
+      
+      <div class="form-group" id="sample-photo-group">
+        <label for="photo"
+               class="col-sm-2 control-label form-label">Photo</label>
+        <div class="col-sm-10 upload">
+          <p>cinnamon_roll_pancakes.jpg</p>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="title" 
+               class="col-sm-2 control-label form-label">Title</label>
+            <div class="col-sm-10">
+              <input class="form-control" 
+                     type="text" name="title" id="title" class="input-box-form">
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label for="blog_url" 
+               class="col-sm-2 control-label form-label">Blog Url</label>                   <div class="col-sm-10">
+              <input class="form-control" 
+                     type="text" name="blog_url" id="blog_url"   
+                     class="input-box-form">
+            </div>
+      </div>  
+
+      <div class="form-group">
+        <label for="description" 
+               class="col-sm-2 control-label form-label">Description</label>
+            <div class="col-sm-10">
+              <textarea class="form-control"
+                       name="description" id="description" 
+                       class="input-box-form"></textarea>
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ingredients" 
+               class="col-sm-2 control-label form-label">Ingredients</label>                   <div class="col-sm-10">
+              <input class="form-control" 
+                     type="text" name="ingredients" id="ingredients"   
+                     class="input-box-form">
+            </div>
+      </div>  
+
+      <div class="form-group">
+        <label for="total_time" 
+               class="col-sm-2 control-label form-label">Total Time</label>
+            <div class="col-sm-10">
+              <input class="form-control" 
+                     type="number" name="total_time" id="total_time" 
+                     class="input-box-form" placeholder="minutes">
+            </div>
+      </div>
+
+        <label class="col-sm-2 control-label form-label">Categories</label>
+        <div class="form-group col-sm-offset-2 col-sm-10">
+          <div class="btn-group" data-toggle="buttons">
+            <% FoodgawkerApp.Data.categories.forEach(function(category) { %>
+            <label class="btn btn-primary category" 
+                   id="label-cat<%= category.id %>">
+              <input type="checkbox" 
+                     id="input-cat<%= category.id %>" 
+                     name="recipe_categories[<%= category.id %>][category_id]"
+                     value="<%= category.id %>" 
+                     class="input-box-form"><%= category.name %>
+            </label>
+            <% })%>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" 
+                  id="recipe-form-button" 
+                  class="btn btn-default">Add Recipe</button> 
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div class="col-sm-4">
+    <div id="noImg"><center><h4 id="uploadText">Photo Preview</h4></div>
+    <img class="detail small shadow" id="preview">
+  </div>
+</div>

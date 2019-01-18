@@ -1,0 +1,76 @@
+<div class="col-sm-4 mini-container" data-recipe-id="<%= recipe.id %>" id="recipe-<%= recipe.id %>">
+  <img id="overlay-img<%= recipe.id %>" data-recipe-id="<%= recipe.id %>" class="img-circle small overlay">
+    <div class="hover-header" data-recipe-id="<%= recipe.id %>" id="header<%= recipe.id %>"><center><h4 class="hover-header-text" data-recipe-id="<%= recipe.id %>" id="header<%= recipe.id %>"><%= recipe.get("title").toUpperCase() %></h4></center>
+    </div>
+   
+  <img id="img<%= recipe.id %>" data-recipe-id="<%= recipe.id %>" class="detail img-circle small shadow" src="<%= recipe.get('med_photo_url')%>">
+  
+  <br><br>
+  <p class="detail-desc"><%= recipe.get("description")%> <a href="#recipes/<%= recipe.id %>">More Info</a></p>
+    <% var favorites = recipe.get("favorites") %>
+    <% var currUser = FoodgawkerApp.Data.currentUser %>
+  
+    <% if(currUser.id) { %>
+      <% if(favorites && favorites.findWhere({ user_id: currUser.id })) { %>
+         <button class="btn btn-primary btn-sm" id="unfavorite" data-recipe-id="<%= recipe.id %>"><span class="glyphicon glyphicon-heart"></span></button> 
+      <% } else { %>
+        <button class="btn btn-primary btn-sm" id="favorite" data-recipe-id="<%= recipe.id %>"><span class="glyphicon glyphicon-heart-empty"></span></button>
+      <% } %>
+        <button class="btn btn-primary btn-sm" data-recipe-id="<%= recipe.id %>" id="share"><span class="glyphicon glyphicon-send"></span></button><h6 id="email-tooltip">Email this recipe to yourself!</h6><h6 id="email-text">Recipe was sent to your email!</h6>
+    <% } else { %>
+      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#signInModal"><span class="glyphicon glyphicon-heart-empty"></span></button>
+      <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#signInModal" data-recipe-id="<%= recipe.id %>" id="signedout-share"><span class="glyphicon glyphicon-send"></span></button><h6 id="email-tooltip">Email this recipe to yourself!</h6>
+    <% }%>
+</div>
+
+<div class="modal fade" id="recipeModal<%= recipe.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content detail-modal">
+      
+      <div class="modal-header detail-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 class="modal-title" id="myModalLabel"><%= recipe.get("title").toUpperCase() %></h4></center>
+      </div>
+      
+      <div class="modal-body detail-body">
+        <div class="row">
+          
+          <div class="col-sm-7">
+            <center><a href="<%= recipe.get('blog_url') %>" target="_blank"><img class="modal-img img-rounded" src="<%= recipe.get('large_photo_url')%>"></a></center>
+            <br>
+          </div>
+          
+          <div class="col-sm-5">
+            <h5 class="modal-text"><b>Total Time:</b> <%= recipe.get("total_time") %> minutes</h5>
+            <br>
+            <h5 class="modal-text"><b>Ingredients:</b> <%= recipe.get("ingredients") %></h5>      
+            <br> 
+            <h5 class="modal-text"><%= recipe.get("description")%></h5>
+            <br>
+          </div>
+          <div id="share-tooltips">
+            <p id="email-tooltip-modal">Email this recipe to yourself!</p>
+            <p id="email-text-modal">Recipe was sent to your email!</p>
+          </div>
+          <div id="modal-btns">
+            <% var favorites = recipe.get("favorites") %>
+            <% var currUser = FoodgawkerApp.Data.currentUser %>
+            <% if(currUser.id) { %>
+              <% if(favorites && favorites.findWhere({ user_id: currUser.id })) { %>
+                 <button type="button" class="btn btn-primary btn-sm" id="unfavorite" data-recipe-id="<%= recipe.id %>" data-dismiss="modal"><span class="glyphicon glyphicon-heart"></span></button> 
+              <% } else { %>
+                <button type="button" class="btn btn-primary btn-sm" id="favorite" data-recipe-id="<%= recipe.id %>" data-dismiss="modal"><span class="glyphicon glyphicon-heart-empty"></span></button>
+              <% } %>
+              <button class="btn btn-primary btn-sm" data-recipe-id="<%= recipe.id %>" id="share-modal"><span class="glyphicon glyphicon-send"></span></button>
+            <% } %>
+        </div>
+        </div>
+          <!-- <div class="modal-footer">
+          </div> -->
+          
+        </div>
+      </div>
+    
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-pills navbar-fixed-top">
+  <div class="navbar-header">
+    <button class="btn navbar-toggle" data-toggle="collapse" data-target="#app-nav"><span class="glyphicon glyphicon-cutlery"></span></button>
+    <a href="#" class="navbar-brand">VegGawker</a> <p class="navbar-tag">{vegan nosh for days}</p>
+  </div>
+  <div id="app-nav" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="#">All Recipes</a></li>
+      <li><a href="#top">Most Faved</a></li>
+      <li id="search-nav"><a>Search</a></li>
+        <% if(FoodgawkerApp.Data.currentUser.id === undefined) { %>
+          <li><a data-toggle="modal" data-target="#signUpModal">Sign Up</a><li>
+          <li id="sign-in-li"><a data-toggle="modal" data-target="#signInModal" id="sign-in">Sign In</a><li>
+          <li id="guest-btn-li"><button class="btn btn-info btn-default nav-bar-btn" id="guest-btn">Guest Log In</button><li>
+        <% } else { %>
+          <li id="submit-recipe-li"><a href="#recipes/new" id="submit-recipe">Submit Recipe</a></li>
+          <li><a href="#favorites">Favorite Recipes</a></li>
+          <li id="sign-out-li"><button type="submit" class="btn btn-info btn-default nav-bar-btn signout" id="sign-out-btn">Sign Out</button></li>
+        <% } %>
+    </ul>
+    
+  </div>
+
+  <div id="search-view">
+
+  </div>
+</nav>
