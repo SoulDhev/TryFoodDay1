@@ -1,0 +1,33 @@
+<script id="bootstrapped-categories" type="text/data">
+  <%= Category.all.to_json.html_safe %>
+</script>
+
+<% if logged_in? %>
+  <script id="bootstrapped-current-user" type="text/data">
+    <%= current_user.to_json.html_safe %>
+  </script>
+  
+<% else %>
+  <script id="bootstrapped-current-user" type="text/data">
+    <%= "undefined".to_json.html_safe %>
+  </script>
+<% end %>
+
+
+<div id="nav-section">
+</div>
+
+<div id="alerts-section">
+</div>
+
+<div class="container">
+
+</div>
+
+<div id="modal-sign-in-section">
+
+</div>
+
+<div id="modal-sign-up-section">
+
+</div>
